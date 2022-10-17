@@ -75,7 +75,7 @@ print("batch_size", batch_size)
 boundaries = [int(sss[0]) for sss in step_size_schedule]
 boundaries = boundaries[1:]
 values = [sss[1] for sss in step_size_schedule]
-global_step = tf.contrib.framework.get_or_create_global_step()
+global_step = tf.compat.v1.train.get_or_create_global_step()
 learning_rate = tf.train.piecewise_constant(
     tf.cast(global_step, tf.int32), boundaries, values)
 

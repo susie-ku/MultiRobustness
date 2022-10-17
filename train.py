@@ -11,6 +11,7 @@ import shutil
 from timeit import default_timer as timer
 
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 import numpy as np
 
 from pgd_attack import PGDAttack, compute_grad

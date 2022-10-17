@@ -39,15 +39,15 @@ class Model(object):
 
     if config["model_type"] == "cnn":
         x.set_shape((None, 28, 28, 1))
-        x = tf.layers.conv2d(x, 32, (5, 5), activation='relu', padding='same', name='conv1')
-        x = tf.layers.max_pooling2d(x, (2, 2), (2, 2), padding='same')
-        x = tf.layers.conv2d(x, 64, (5, 5), activation='relu', padding='same', name='conv2')
-        x = tf.layers.max_pooling2d(x, (2, 2), (2, 2), padding='same')
+        x = tf.keras.layers.Conv2D(x, 32, (5, 5), activation='relu', padding='same', name='conv1')
+        x = tf.keras.layers.max_pooling2d(x, (2, 2), (2, 2), padding='same')
+        x = tf.keras.layers.Conv2D(x, 64, (5, 5), activation='relu', padding='same', name='conv2')
+        x = tf.keras.layers.max_pooling2d(x, (2, 2), (2, 2), padding='same')
 
-        x = tf.layers.flatten(x)
+        x = tf.keras.layers.flatten(x)
         #x = tf.layers.flatten(tf.transpose(x, (0, 3, 1, 2)))
-        x = tf.layers.dense(x, 1024, activation='relu', name='fc1')
-        self.pre_softmax = tf.layers.dense(x, 10, name='fc2')
+        x = tf.keras.layers.dense(x, 1024, activation='relu', name='fc1')
+        self.pre_softmax = tf.keras.layers.dense(x, 10, name='fc2')
     else:
         W_fc = self._weight_variable([784*ch, 2])
         b_fc = self._bias_variable([2])

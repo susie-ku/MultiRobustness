@@ -24,7 +24,7 @@ logging.getLogger('tensorflow').setLevel(logging.ERROR)
 model_dir = sys.argv[1]
 
 try:
-    with open(model_dir + "/config.json") as config_file:
+    with open(model_dir + "/config_cifar10.json") as config_file:
         config = json.load(config_file)
         print("opened previous config file")
 except IOError:

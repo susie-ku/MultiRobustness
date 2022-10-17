@@ -7,15 +7,16 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
+import tensorflow_addons as tfa
 import numpy as np
 
 
 class Model(object):
   def __init__(self, config):
     assert config["model_type"] in ["cnn", "linear"]
-    self.is_training = tf.placeholder(tf.bool)
-    self.x_input = tf.placeholder(tf.float32, shape = [None, 28, 28, 1])
-    self.y_input = tf.placeholder(tf.int64, shape = [None])
+    self.is_training = tf.compat.v1.placeholder(tf.bool)
+    self.x_input = tf.compat.v1.placeholder(tf.float32, shape = [None, 28, 28, 1])
+    self.y_input = tf.compat.v1.placeholder(tf.int64, shape = [None])
 
     self.transform = tf.placeholder_with_default(tf.zeros((tf.shape(self.x_input)[0], 3)), shape=[None, 3])
     trans_x, trans_y, rot = tf.unstack(self.transform, axis=1)
